@@ -948,15 +948,7 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
                   ),
                   const SizedBox(
                     height: 30,
-                  ),
-                  _subtitleRowWidget(context),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  _audioRowWidget(context),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  )
                 ],
               ),
             ),
