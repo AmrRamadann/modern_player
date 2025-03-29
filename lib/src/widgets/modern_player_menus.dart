@@ -11,6 +11,7 @@ class ModernPlayerMenus {
       context: context,
       useSafeArea: true,
       showDragHandle: true,
+      isScrollControlled: true,
       backgroundColor: menuColor,
       constraints: const BoxConstraints(maxWidth: 400),
       builder: (context) => Padding(
@@ -72,6 +73,7 @@ class ModernPlayerMenus {
       context: context,
       useSafeArea: true,
       showDragHandle: true,
+      isScrollControlled: true,
       backgroundColor: menuColor,
       constraints: const BoxConstraints(maxWidth: 400),
       builder: (context) => Padding(
@@ -116,135 +118,6 @@ class ModernPlayerMenus {
               const SizedBox(
                 height: 10,
               )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void showSubtitleOptions(BuildContext context,
-      {required Color menuColor,
-      required int activeTrack,
-      required Map<dynamic, dynamic> allTracks,
-      required Function(MapEntry<dynamic, dynamic> selected)
-          onChangedSubtitle}) {
-    InkWell subtitleListItelWidget(
-        MapEntry<dynamic, dynamic> e, BuildContext context) {
-      return InkWell(
-        onTap: () {
-          if (e.key != activeTrack) {
-            Navigator.pop(context);
-            onChangedSubtitle.call(e);
-          }
-        },
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 8),
-          child: Row(
-            children: [
-              if (e.value == allTracks[activeTrack] ||
-                  e.key == -1 && allTracks[activeTrack] == null)
-                const SizedBox(
-                  width: 15,
-                  child: Icon(
-                    Icons.check_rounded,
-                    color: Colors.white,
-                  ),
-                ),
-              SizedBox(
-                width: e.value == allTracks[activeTrack] ||
-                        e.key == -1 && allTracks[activeTrack] == null
-                    ? 20
-                    : 35,
-              ),
-              Text(
-                e.value,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    showModalBottomSheet(
-      context: context,
-      useSafeArea: true,
-      isScrollControlled: true,
-      showDragHandle: true,
-      backgroundColor: menuColor,
-      constraints: const BoxConstraints(maxWidth: 400),
-      builder: (context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              subtitleListItelWidget(const MapEntry(-1, "None"), context),
-              ...allTracks.entries.map(
-                (e) => subtitleListItelWidget(e, context),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void showAudioOptions(BuildContext context,
-      {required Color menuColor,
-      required int activeTrack,
-      required Map<dynamic, dynamic> allTracks,
-      required Function(MapEntry<dynamic, dynamic> selectedTrack)
-          onChangedAudio}) {
-    showModalBottomSheet(
-      context: context,
-      useSafeArea: true,
-      showDragHandle: true,
-      backgroundColor: menuColor,
-      constraints: const BoxConstraints(maxWidth: 400),
-      builder: (context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ...allTracks.entries.map(
-                (e) => InkWell(
-                  onTap: () {
-                    if (e.key != activeTrack) {
-                      Navigator.pop(context);
-                      onChangedAudio.call(e);
-                    }
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      children: [
-                        if (e.value == allTracks[activeTrack])
-                          const SizedBox(
-                            width: 15,
-                            child: Icon(
-                              Icons.check_rounded,
-                              color: Colors.white,
-                            ),
-                          ),
-                        SizedBox(
-                          width: e.value == allTracks[activeTrack] ? 20 : 35,
-                        ),
-                        Text(
-                          e.value,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
             ],
           ),
         ),
