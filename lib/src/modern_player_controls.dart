@@ -406,76 +406,76 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
     }
   }
 
-  void onVerticalDragStartFun(DragStartDetails d) {
-    _dragLeft = false;
-    _dragRight = false;
+  // void onVerticalDragStartFun(DragStartDetails d) {
+  //   _dragLeft = false;
+  //   _dragRight = false;
+  //
+  //   if (d.localPosition.dx >
+  //       (widget.viewSize.width / 3 + (widget.viewSize.width / 3))) {
+  //     // right, volume
+  //     if (widget.controlsOptions.enableVolumeSlider) {
+  //       _dragRight = true;
+  //       double volume = _volume ?? (player.value.volume / 100).toDouble();
+  //       setState(() {
+  //         _slidingValue = volume;
+  //         _volume = volume;
+  //         _valController.add(volume);
+  //       });
+  //     }
+  //   } else if (d.localPosition.dx < widget.viewSize.width / 3) {
+  //     // left, brightness
+  //     if (widget.controlsOptions.enableBrightnessSlider) {
+  //       _dragLeft = true;
+  //       ScreenBrightness().current.then((v) {
+  //         setState(() {
+  //           _slidingValue = v;
+  //           _brightness = v;
+  //           _valController.add(v);
+  //         });
+  //       });
+  //     }
+  //   }
+  //
+  //   _statelessTimer?.cancel();
+  //   _statelessTimer = Timer(const Duration(milliseconds: 2000), () {
+  //     setState(() {});
+  //   });
+  // }
 
-    if (d.localPosition.dx >
-        (widget.viewSize.width / 3 + (widget.viewSize.width / 3))) {
-      // right, volume
-      if (widget.controlsOptions.enableVolumeSlider) {
-        _dragRight = true;
-        double volume = _volume ?? (player.value.volume / 100).toDouble();
-        setState(() {
-          _slidingValue = volume;
-          _volume = volume;
-          _valController.add(volume);
-        });
-      }
-    } else if (d.localPosition.dx < widget.viewSize.width / 3) {
-      // left, brightness
-      if (widget.controlsOptions.enableBrightnessSlider) {
-        _dragLeft = true;
-        ScreenBrightness().current.then((v) {
-          setState(() {
-            _slidingValue = v;
-            _brightness = v;
-            _valController.add(v);
-          });
-        });
-      }
-    }
+  // void onVerticalDragUpdateFun(DragUpdateDetails d) {
+  //   double delta = d.primaryDelta! / widget.viewSize.height;
+  //   delta = -delta.clamp(-1.0, 1.0);
+  //   if (_dragRight == true) {
+  //     var volume = _volume ?? 1;
+  //     volume += delta;
+  //     volume = volume.clamp(0.0, 1.0);
+  //     player.setVolume((volume * 100).toInt());
+  //     setState(() {
+  //       _slidingValue = volume;
+  //       _volume = volume;
+  //       _valController.add(volume);
+  //     });
+  //   } else if (_dragLeft == true) {
+  //     var brightness = _brightness;
+  //     if (brightness != null) {
+  //       brightness += delta;
+  //       brightness = brightness.clamp(0.0, 1.0);
+  //       _brightness = brightness;
+  //       ScreenBrightness().setScreenBrightness(brightness);
+  //       setState(() {
+  //         _slidingValue = brightness;
+  //         _valController.add(brightness!);
+  //       });
+  //     }
+  //   }
+  // }
 
-    _statelessTimer?.cancel();
-    _statelessTimer = Timer(const Duration(milliseconds: 2000), () {
-      setState(() {});
-    });
-  }
-
-  void onVerticalDragUpdateFun(DragUpdateDetails d) {
-    double delta = d.primaryDelta! / widget.viewSize.height;
-    delta = -delta.clamp(-1.0, 1.0);
-    if (_dragRight == true) {
-      var volume = _volume ?? 1;
-      volume += delta;
-      volume = volume.clamp(0.0, 1.0);
-      player.setVolume((volume * 100).toInt());
-      setState(() {
-        _slidingValue = volume;
-        _volume = volume;
-        _valController.add(volume);
-      });
-    } else if (_dragLeft == true) {
-      var brightness = _brightness;
-      if (brightness != null) {
-        brightness += delta;
-        brightness = brightness.clamp(0.0, 1.0);
-        _brightness = brightness;
-        ScreenBrightness().setScreenBrightness(brightness);
-        setState(() {
-          _slidingValue = brightness;
-          _valController.add(brightness!);
-        });
-      }
-    }
-  }
-
-  void onVerticalDragEndFun(DragEndDetails e) {
-    _slidingValue = null;
-    _brightness = null;
-    _statelessTimer?.cancel();
-    setState(() {});
-  }
+  // void onVerticalDragEndFun(DragEndDetails e) {
+  //   _slidingValue = null;
+  //   _brightness = null;
+  //   _statelessTimer?.cancel();
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -494,10 +494,10 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
                     GestureDetector(
                       onTap: _cancelAndRestartTimer,
                       onDoubleTapDown: _onDoubleTap,
-                      onVerticalDragStart: onVerticalDragStartFun,
-                      onVerticalDragUpdate: onVerticalDragUpdateFun,
-                      onVerticalDragEnd: onVerticalDragEndFun,
-                      onHorizontalDragStart: (details) {},
+                      // onVerticalDragStart: onVerticalDragStartFun,
+                      // onVerticalDragUpdate: onVerticalDragUpdateFun,
+                      // onVerticalDragEnd: onVerticalDragEndFun,
+                      // onHorizontalDragStart: (details) {},
                       child: Container(
                         color: Colors.transparent,
                         padding: const EdgeInsets.all(10),
@@ -505,29 +505,29 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
                           children: [
                             Row(
                               children: [
-                                if (widget.controlsOptions.showBackbutton)
-                                  // Back Button
-                                  SizedBox(
-                                    height: 50,
-                                    width: 50,
-                                    child: InkWell(
-                                      onTap: () {
-                                        widget.callbackOptions.onBackPressed
-                                            ?.call();
-                                      },
-                                      child: Card(
-                                        color: getIconsBackgroundColor(),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: widget.themeOptions.backIcon ??
-                                            const Icon(
-                                              Icons.arrow_back_ios_new_rounded,
-                                              color: Colors.white,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
+                                // if (widget.controlsOptions.showBackbutton)
+                                //   // Back Button
+                                //   SizedBox(
+                                //     height: 50,
+                                //     width: 50,
+                                //     child: InkWell(
+                                //       onTap: () {
+                                //         widget.callbackOptions.onBackPressed
+                                //             ?.call();
+                                //       },
+                                //       child: Card(
+                                //         color: getIconsBackgroundColor(),
+                                //         shape: RoundedRectangleBorder(
+                                //             borderRadius:
+                                //                 BorderRadius.circular(10)),
+                                //         child: widget.themeOptions.backIcon ??
+                                //             const Icon(
+                                //               Icons.arrow_back_ios_new_rounded,
+                                //               color: Colors.white,
+                                //             ),
+                                //       ),
+                                //     ),
+                                //   ),
                                 const Spacer(),
                                 // Custom Buttons
                                 ..._customActionButtons.map(
@@ -638,47 +638,49 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
               : GestureDetector(
                   onTap: _cancelAndRestartTimer,
                   onDoubleTapDown: _onDoubleTap,
-                  onVerticalDragStart: onVerticalDragStartFun,
-                  onVerticalDragUpdate: onVerticalDragUpdateFun,
-                  onVerticalDragEnd: onVerticalDragEndFun,
-                  onHorizontalDragStart: (details) {},
-                  child: Container(
-                    color: Colors.transparent,
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                            child: (_slidingValue != null)
-                                ? IgnorePointer(
-                                    child: _brightness != null
-                                        ? _VideoControlsSliderToast(
-                                            _brightness!,
-                                            1,
-                                            _valController.stream,
-                                            widget.themeOptions
-                                                    .brightnessSlidertheme ??
-                                                ModernPlayerToastSliderThemeOption(
-                                                    sliderColor: Colors.blue),
-                                            widget.themeOptions
-                                                    .volumeSlidertheme ??
-                                                ModernPlayerToastSliderThemeOption(
-                                                    sliderColor: Colors.blue))
-                                        : _VideoControlsSliderToast(
-                                            _volume!,
-                                            0,
-                                            _valController.stream,
-                                            widget.themeOptions
-                                                    .brightnessSlidertheme ??
-                                                ModernPlayerToastSliderThemeOption(
-                                                    sliderColor: Colors.blue),
-                                            widget.themeOptions
-                                                    .volumeSlidertheme ??
-                                                ModernPlayerToastSliderThemeOption(
-                                                    sliderColor: Colors.blue)),
-                                  )
-                                : const SizedBox.shrink())
-                      ],
-                    ),
-                  ),
+                  // onVerticalDragStart: onVerticalDragStartFun,
+                  // onVerticalDragUpdate: onVerticalDragUpdateFun,
+                  // onVerticalDragEnd: onVerticalDragEndFun,
+                  // onHorizontalDragStart: (details) {},
+                  // child: Container(
+                  //   color: Colors.transparent,
+                  //   child: Stack(
+                  //     children: [
+                  //       Positioned.fill(
+                  //           child: (_slidingValue != null)
+                  //               ? IgnorePointer(
+                  //                   child: _brightness != null
+                  //                       ? _VideoControlsSliderToast(
+                  //                           _brightness!,
+                  //                           1,
+                  //                           _valController.stream,
+                  //                           // widget.themeOptions
+                  //                           //         .brightnessSlidertheme ??
+                  //                           //     ModernPlayerToastSliderThemeOption(
+                  //                           //         sliderColor: Colors.blue),
+                  //                           // widget.themeOptions
+                  //                           //         .volumeSlidertheme ??
+                  //                           //     ModernPlayerToastSliderThemeOption(
+                  //                           //         sliderColor: Colors.blue)
+                  //                   )
+                  //                       : _VideoControlsSliderToast(
+                  //                           _volume!,
+                  //                           0,
+                  //                           _valController.stream,
+                  //                           // widget.themeOptions
+                  //                           //         .brightnessSlidertheme ??
+                  //                           //     ModernPlayerToastSliderThemeOption(
+                  //                           //         sliderColor: Colors.blue),
+                  //                           // widget.themeOptions
+                  //                           //         .volumeSlidertheme ??
+                  //                           //     ModernPlayerToastSliderThemeOption(
+                  //                           //         sliderColor: Colors.blue)
+                  //                   ),
+                  //                 )
+                  //               : const SizedBox.shrink())
+                  //     ],
+                  //   ),
+                  // ),
                 ),
         ),
         if (_isLoading)
@@ -986,138 +988,138 @@ class VideoSliderTrackShape extends RoundedRectSliderTrackShape {
   }
 }
 
-class _VideoControlsSliderToast extends StatefulWidget {
-  final Stream<double> emitter;
-  final double initial;
-
-  // type 0 volume
-  // type 1 screen brightness
-  final int type;
-  final ModernPlayerToastSliderThemeOption volumeSliderTheme;
-  final ModernPlayerToastSliderThemeOption brightnessSliderTheme;
-
-  const _VideoControlsSliderToast(this.initial, this.type, this.emitter,
-      this.brightnessSliderTheme, this.volumeSliderTheme);
-
-  @override
-  _VideoControlsSliderToastState createState() =>
-      _VideoControlsSliderToastState();
-}
-
-class _VideoControlsSliderToastState extends State<_VideoControlsSliderToast> {
-  double value = 0;
-  StreamSubscription? subs;
-
-  @override
-  void initState() {
-    super.initState();
-    value = widget.initial;
-    subs = widget.emitter.listen((v) {
-      setState(() {
-        value = v;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    subs?.cancel();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final type = widget.type;
-
-    if (type == 0) {
-      // Volume
-      IconData iconData;
-      if (value <= 0) {
-        iconData = widget.volumeSliderTheme.unfilledIcon ?? Icons.volume_mute;
-      } else if (value < 0.5) {
-        iconData = widget.volumeSliderTheme.halfFilledIcon ?? Icons.volume_down;
-      } else {
-        iconData = widget.volumeSliderTheme.filledIcon ?? Icons.volume_up;
-      }
-
-      return Align(
-        alignment: const Alignment(0, -0.4),
-        child: Card(
-          color: widget.volumeSliderTheme.backgroundColor ??
-              Colors.black.withOpacity(.5),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  iconData,
-                  color: widget.volumeSliderTheme.iconColor ?? Colors.white,
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 1.5,
-                  child: LinearProgressIndicator(
-                    value: value,
-                    backgroundColor: Colors.white60,
-                    valueColor: AlwaysStoppedAnimation(
-                        widget.volumeSliderTheme.sliderColor),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    } else {
-      // Brightness
-      IconData iconData;
-      if (value <= 0) {
-        iconData =
-            widget.brightnessSliderTheme.unfilledIcon ?? Icons.brightness_low;
-      } else if (value < 0.5) {
-        iconData = widget.brightnessSliderTheme.halfFilledIcon ??
-            Icons.brightness_medium;
-      } else {
-        iconData =
-            widget.brightnessSliderTheme.filledIcon ?? Icons.brightness_high;
-      }
-
-      return Align(
-        alignment: const Alignment(0, -0.4),
-        child: Card(
-          color: widget.brightnessSliderTheme.backgroundColor ??
-              Colors.black.withOpacity(.5),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  iconData,
-                  color: widget.brightnessSliderTheme.iconColor ?? Colors.white,
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 1.5,
-                  child: LinearProgressIndicator(
-                    value: value,
-                    backgroundColor: Colors.white60,
-                    valueColor: AlwaysStoppedAnimation(
-                        widget.brightnessSliderTheme.sliderColor),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-  }
-}
+// class _VideoControlsSliderToast extends StatefulWidget {
+//   final Stream<double> emitter;
+//   final double initial;
+//
+//   // type 0 volume
+//   // type 1 screen brightness
+//   final int type;
+//   // final ModernPlayerToastSliderThemeOption volumeSliderTheme;
+//   // final ModernPlayerToastSliderThemeOption brightnessSliderTheme;
+//
+//   const _VideoControlsSliderToast(this.initial, this.type, this.emitter,
+//       );
+//
+//   @override
+//   _VideoControlsSliderToastState createState() =>
+//       _VideoControlsSliderToastState();
+// }
+//
+// class _VideoControlsSliderToastState extends State<_VideoControlsSliderToast> {
+//   double value = 0;
+//   StreamSubscription? subs;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     value = widget.initial;
+//     subs = widget.emitter.listen((v) {
+//       setState(() {
+//         value = v;
+//       });
+//     });
+//   }
+//
+//   @override
+//   void dispose() {
+//     super.dispose();
+//     subs?.cancel();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final type = widget.type;
+//
+//     if (type == 0) {
+//       // Volume
+//       IconData iconData;
+//       if (value <= 0) {
+//         iconData = widget.volumeSliderTheme.unfilledIcon ?? Icons.volume_mute;
+//       } else if (value < 0.5) {
+//         iconData = widget.volumeSliderTheme.halfFilledIcon ?? Icons.volume_down;
+//       } else {
+//         iconData = widget.volumeSliderTheme.filledIcon ?? Icons.volume_up;
+//       }
+//
+//       return Align(
+//         alignment: const Alignment(0, -0.4),
+//         child: Card(
+//           color: widget.volumeSliderTheme.backgroundColor ??
+//               Colors.black.withOpacity(.5),
+//           child: Container(
+//             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+//             child: Row(
+//               mainAxisSize: MainAxisSize.min,
+//               children: <Widget>[
+//                 Icon(
+//                   iconData,
+//                   color: widget.volumeSliderTheme.iconColor ?? Colors.white,
+//                 ),
+//                 const SizedBox(
+//                   width: 4,
+//                 ),
+//                 SizedBox(
+//                   width: 100,
+//                   height: 1.5,
+//                   child: LinearProgressIndicator(
+//                     value: value,
+//                     backgroundColor: Colors.white60,
+//                     valueColor: AlwaysStoppedAnimation(
+//                         widget.volumeSliderTheme.sliderColor),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       );
+//     } else {
+//       // Brightness
+//       IconData iconData;
+//       if (value <= 0) {
+//         iconData =
+//             widget.brightnessSliderTheme.unfilledIcon ?? Icons.brightness_low;
+//       } else if (value < 0.5) {
+//         iconData = widget.brightnessSliderTheme.halfFilledIcon ??
+//             Icons.brightness_medium;
+//       } else {
+//         iconData =
+//             widget.brightnessSliderTheme.filledIcon ?? Icons.brightness_high;
+//       }
+//
+//       return Align(
+//         alignment: const Alignment(0, -0.4),
+//         child: Card(
+//           color: widget.brightnessSliderTheme.backgroundColor ??
+//               Colors.black.withOpacity(.5),
+//           child: Container(
+//             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+//             child: Row(
+//               mainAxisSize: MainAxisSize.min,
+//               children: <Widget>[
+//                 Icon(
+//                   iconData,
+//                   color: widget.brightnessSliderTheme.iconColor ?? Colors.white,
+//                 ),
+//                 const SizedBox(
+//                   width: 4,
+//                 ),
+//                 SizedBox(
+//                   width: 100,
+//                   height: 1.5,
+//                   child: LinearProgressIndicator(
+//                     value: value,
+//                     backgroundColor: Colors.white60,
+//                     valueColor: AlwaysStoppedAnimation(
+//                         widget.brightnessSliderTheme.sliderColor),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       );
+//     }
+//   }
+// }

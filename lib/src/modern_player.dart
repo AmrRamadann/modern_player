@@ -334,9 +334,13 @@ class _ModernPlayerState extends State<ModernPlayer> {
                       _onChangeVisibility(info.visibleFraction);
                     }
                   },
-                  child: VlcPlayer(
-                    controller: _playerController,
-                    aspectRatio: _playerController.value.aspectRatio,
+                  child: InteractiveViewer(
+                    minScale: 0.1,
+                    maxScale: 8,
+                    child: VlcPlayer(
+                      controller: _playerController,
+                      aspectRatio: _playerController.value.aspectRatio,
+                    ),
                   ),
                 ),
               ),

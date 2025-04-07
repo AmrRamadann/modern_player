@@ -300,11 +300,11 @@ class ModernPlayerThemeOptions {
   /// Customize theme of progress slider theme.
   ModernPlayerProgressSliderTheme? progressSliderTheme;
 
-  /// Customize theme of brightness slider.
-  ModernPlayerToastSliderThemeOption? brightnessSlidertheme;
+  // /// Customize theme of brightness slider.
+  // ModernPlayerToastSliderThemeOption? brightnessSlidertheme;
 
-  /// Customize theme of volume slider.
-  ModernPlayerToastSliderThemeOption? volumeSlidertheme;
+  // /// Customize theme of volume slider.
+  // ModernPlayerToastSliderThemeOption? volumeSlidertheme;
 
   ModernPlayerThemeOptions(
       {this.backgroundColor,
@@ -316,8 +316,9 @@ class ModernPlayerThemeOptions {
       this.backIcon,
       this.customLoadingWidget,
       this.progressSliderTheme,
-      this.brightnessSlidertheme,
-      this.volumeSlidertheme});
+      // this.brightnessSlidertheme,
+      // this.volumeSlidertheme
+      });
 }
 
 /// Proggress slider theme option for Modern Player
