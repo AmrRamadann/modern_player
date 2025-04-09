@@ -724,20 +724,20 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
-            SizedBox(
-              width: 40,
-              child: IconButton(
-                onPressed: () {
-                  _startHideTimer();
-                  _seekBackward();
-                },
-                icon: const Icon(
-                  Icons.replay_10_rounded,
-                  size: 20,
-                ),
-                color: Colors.white,
-              ),
-            ),
+            // SizedBox(
+            //   width: 40,
+            //   child: IconButton(
+            //     onPressed: () {
+            //       _startHideTimer();
+            //       _seekBackward();
+            //     },
+            //     icon: const Icon(
+            //       Icons.replay_10_rounded,
+            //       size: 20,
+            //     ),
+            //     color: Colors.white,
+            //   ),
+            // ),
             SizedBox(
               width: 40,
               child: GestureDetector(
@@ -754,20 +754,20 @@ class _ModernPlayerControlsState extends State<ModernPlayerControls> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 40,
-              child: IconButton(
-                onPressed: () {
-                  _startHideTimer();
-                  _seekForward();
-                },
-                icon: const Icon(
-                  Icons.forward_10_rounded,
-                  size: 20,
-                ),
-                color: Colors.white,
-              ),
-            ),
+            // SizedBox(
+            //   width: 40,
+            //   child: IconButton(
+            //     onPressed: () {
+            //       _startHideTimer();
+            //       _seekForward();
+            //     },
+            //     icon: const Icon(
+            //       Icons.forward_10_rounded,
+            //       size: 20,
+            //     ),
+            //     color: Colors.white,
+            //   ),
+            // ),
             const SizedBox(
               width: 5,
             ),
